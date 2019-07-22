@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="JavaScript-DOM操作1.DOMDOM(document object model),文档对象模型。 JS中有一个系统提供的对象叫document,指向整个网页。 HTML中的每个标签，在js中都是document下面的节点，类型都是document 2.DOM操作2.1获取节点 获取元素（标签/节点）  在Js中获取html中的标签 12345678910111213141516171">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lihongweii">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/javascript-DOM/index.html">
+<meta property="og:site_name" content="lihongweii">
+<meta property="og:description" content="JavaScript-DOM操作1.DOMDOM(document object model),文档对象模型。 JS中有一个系统提供的对象叫document,指向整个网页。 HTML中的每个标签，在js中都是document下面的节点，类型都是document 2.DOM操作2.1获取节点 获取元素（标签/节点）  在Js中获取html中的标签 12345678910111213141516171">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-19T09:44:02.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lihongweii">
+<meta name="twitter:description" content="JavaScript-DOM操作1.DOMDOM(document object model),文档对象模型。 JS中有一个系统提供的对象叫document,指向整个网页。 HTML中的每个标签，在js中都是document下面的节点，类型都是document 2.DOM操作2.1获取节点 获取元素（标签/节点）  在Js中获取html中的标签 12345678910111213141516171">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/07/19/javascript-DOM/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title> | lihongweii</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lihongweii</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">hello,world</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/javascript-DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lihongweii">
+      <meta itemprop="description" content="hello,world">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lihongweii">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-19 17:44:02" itemprop="dateCreated datePublished" datetime="2019-07-19T17:44:02+08:00">2019-07-19</time>
+            </span>
+          
+
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript-DOM操作"><a href="#JavaScript-DOM操作" class="headerlink" title="JavaScript-DOM操作"></a>JavaScript-DOM操作</h1><h4 id="1-DOM"><a href="#1-DOM" class="headerlink" title="1.DOM"></a>1.DOM</h4><p>DOM(document object model),文档对象模型。</p>
+<p>JS中有一个系统提供的对象叫document,指向整个网页。</p>
+<p>HTML中的每个标签，在js中都是document下面的节点，类型都是document</p>
+<h4 id="2-DOM操作"><a href="#2-DOM操作" class="headerlink" title="2.DOM操作"></a>2.DOM操作</h4><h5 id="2-1获取节点"><a href="#2-1获取节点" class="headerlink" title="2.1获取节点"></a>2.1获取节点</h5><ul>
+<li>获取元素（标签/节点）</li>
+</ul>
+<p>在Js中获取html中的标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line">	//1)根据id获取标签对应的节点</span><br><span class="line">	//document.getElementById(id值)  - 返回一个标签对象</span><br><span class="line">	let pNode = document.getElementById('p1')</span><br><span class="line">	console.log(pNode, typeof(pNode))</span><br><span class="line">	</span><br><span class="line">	//2)根据class值获取节点</span><br><span class="line">	//document.getElementsByClassName(class属性值)  - 返回一个数组</span><br><span class="line">	let c1Nodes = document.getElementsByClassName('c1')</span><br><span class="line">	//通过下标获取单独某一个标签</span><br><span class="line">	console.log(c1Nodes[1])</span><br><span class="line">	//遍历取出每个选中的标签</span><br><span class="line">	for(x=0;x&lt;c1Nodes.length;x++)&#123;</span><br><span class="line">		console.log(x, c1Nodes[x])</span><br><span class="line">	&#125;</span><br><span class="line">	// 3) 根据标签名获取节点</span><br><span class="line">	//document.getElementsByTagName - 返回一个数组</span><br><span class="line">	let pNodes = document.getElementsByTagName('p')</span><br><span class="line">	console.log(pNodes)</span><br><span class="line">	//4) 获取父节点</span><br><span class="line">	//子节点.parentElement   - 返回一个节点</span><br><span class="line">	let aNode = document.getElementById('a1')</span><br><span class="line">	let aParentNode = aNode.parentElement</span><br><span class="line">	console.log(aParentNode)</span><br><span class="line">	//5)获取子节点</span><br><span class="line">	//父节点.children  -  获取指定节点下所有的子节点(不包括孙子等节点), 结果是数组</span><br><span class="line">	let parentNode = aParentNode</span><br><span class="line">	console.log(parentNode.children)</span><br><span class="line">	//父节点.firstElementChild   - 获取第一个子节点</span><br><span class="line">	//父节点.lastElementChild   - 获取最后一个子节点</span><br><span class="line">	console.log(parentNode.firstElementChild)</span><br><span class="line">	console.log(parentNode.lastElementChild)</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-DOM操作节点操作"><a href="#3-DOM操作节点操作" class="headerlink" title="3.DOM操作节点操作"></a>3.DOM操作节点操作</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--===================1.=================--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">style</span>=<span class="string">"width: 200px; height: 200px; background-color: aliceblue;"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>我是段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">""</span>&gt;</span>我超链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div2"</span> <span class="attr">style</span>=<span class="string">"width: 300px; height: 300px; background-color: lightcoral;"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--&lt;img src="img/aaa.ico" alt="" title="" /&gt;--&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--===================2.=================--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div3"</span> <span class="attr">style</span>=<span class="string">"width: 100px; height: 60px; background-color: khaki; margin-bottom: 20px;"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">p</span>&gt;</span>我是段落1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"copyDiv3()"</span>&gt;</span>复制<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">//1.创建节点对象</span><br><span class="line">//document.createElement(标签名)  -  创建指定标签对应的节点</span><br><span class="line">let imgNode = document.createElement('img')</span><br><span class="line">imgNode.src = 'img/luffy.jpg'  //属性设置</span><br><span class="line">imgNode.title = '路飞'</span><br><span class="line">console.log(imgNode)</span><br><span class="line"></span><br><span class="line">//2.添加节点</span><br><span class="line">//父标签.appendChild(新标签)  -  在指定的标签最后添加一个新的子标签</span><br><span class="line">let bodyNode = document.getElementsByTagName('body')[0]</span><br><span class="line">let divNode = document.getElementById('div1')</span><br><span class="line">bodyNode.appendChild(imgNode)</span><br><span class="line">//注意：如果同一个标签被添加多次，那么最后一次有效</span><br><span class="line"></span><br><span class="line">//父标签.insertBefore(新标签, 标签2)  -  在父标签中标签2的前面插入一个新标签</span><br><span class="line">let div2Node = document.getElementById('div2')</span><br><span class="line">bodyNode.insertBefore(imgNode, div2Node)</span><br><span class="line">	//同一个标签加多次，最后一次有效</span><br><span class="line">//	div2Node.appendChild(imgNode)</span><br><span class="line">	// 父标签.insertBefore(新标签, 标签2)  - 在父标签中标签2的前面插入新标签</span><br><span class="line">//	bodyNode.insertBefore(imgNode, div2Node)</span><br><span class="line">	//3.删除节点</span><br><span class="line">	//父节点.removeChild(子节点)  -  删除父节点中指定的子节点</span><br><span class="line">//	bodyNode.removeChild(bodyNode.firstElementChild)</span><br><span class="line">	div1Node.removeChild(div1Node.lastElementChild)</span><br><span class="line">	//节点.remove()   -  删除指定节点</span><br><span class="line">	document.getElementById('div2').remove()</span><br><span class="line">	//4.拷贝节点</span><br><span class="line">	//节点.cloneNode()   -  拷贝指定节点产生一个新的节点(新节点和原节点一样)，浅拷贝(不会复制子标签)</span><br><span class="line">	//节点.cloneNode(true) - 拷贝指定节点产生一个新的节点(新节点和原节点一样)，深拷贝(会复制子标签)</span><br><span class="line">	function copyDiv3()&#123;</span><br><span class="line">		var div3Node = document.getElementById('div3')</span><br><span class="line">		var newDiv3Node = div3Node.cloneNode(true)</span><br><span class="line">		bodyNode.insertBefore(newDiv3Node, document.getElementsByTagName('button')[0])</span><br><span class="line">	&#125;</span><br><span class="line">	//</span><br><span class="line">	let div3Node = document.getElementById('div3')</span><br><span class="line">	let aNode = document.createElement('a')</span><br><span class="line">	aNode.href = 'https://www.baidu.com'</span><br><span class="line">	//innerText: 双标签的文本内容</span><br><span class="line"><span class="xml">	aNode.innerText = '百度一下'   // <span class="tag">&lt;<span class="name">a</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">	//innerHTML：双标签的标签内容</span><br><span class="line"><span class="xml">//	aNode.innerHTML = '百度一下<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/aaa.ico"</span>&gt;</span>'</span></span><br><span class="line">	div3Node.replaceChild(aNode, div3Node.firstElementChild)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/19/bom/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">lihongweii</p>
+  <div class="site-description motion-element" itemprop="description">hello,world</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-DOM操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript-DOM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-DOM"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.DOM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-DOM操作"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.DOM操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1获取节点"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">2.1获取节点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-DOM操作节点操作"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.DOM操作节点操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lihongweii</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</body>
+</html>
